@@ -11,17 +11,19 @@ class App extends Component {
         //react中定义数据定义在状态中
         this.state = {
             todos: [],
-            actTodos:[]
+            nowShowing: 'all'
         };
 
         this.addTodo = this.addTodo.bind(this);
         this.deleteTodo = this.deleteTodo.bind(this);
         this.deleteAllTodo = this.deleteAllTodo.bind(this);
+        // this.getState = this.getState.bind(this);
     }
 
     //添加任务
     addTodo(todoItem) {
         this.state.todos.push(todoItem);
+        //异步函数
         this.setState({todos: this.state.todos});
     }
 
@@ -42,50 +44,53 @@ class App extends Component {
     //改变按钮状态
     changeTodoState(index, state) {
         const list = [...this.state.todos];
-        list[index].isCheck = state;
+        list[index].isCheck = !state;
         this.setState({todos: list});
     }
 
-    //路由切换
-    // stateToggel(filterstate) {
-    //     const todos = this.state.todos;
-    //     todos.filter(item => {
-    //         switch (filterstate) {
-    //             case 'active':
-    //                 return !item.isCheck;
-    //             case 'completed':
-    //                 return item.isCheck;
-    //             default:
-    //                 return true;
-    //         }
-    //     });
-    // }
+    //获取当前页面路由
+    componentDidMount() {
+        window.addEventListener('hashchange', () => {
+            let onState = window.location.hash.slice(2) || 'all';
+            //console.log('被调用了');
+            this.setState({nowShowing: onState})
+        })
+    }
 
-    //按钮切换
-
-
-        render() {
+    render() {
+        let shownTodos = this.state.todos.filter(function (todo) {
+            switch (this.state.nowShowing) {
+                case 'active':
+                    return !todo.isCheck;
+                case 'completed':
+                    return todo.isCheck;
+                default:
+                    return true;
+            }
+        }, this);
         let info = {
             leftCount: this.state.todos.filter((item) => !item.isCheck).length,
-            completedCount: this.state.todos.filter((item) => item.isCheck).length
+            completedCount: shownTodos.filter((item) => item.isCheck).length
         };
-            //展示的内容 只能返回一个父元素
-            return (
-                <div>
-                    <div className="title">todos</div>
-                    <TodoItem todos={this.state.todos}
-                              addTodo={this.addTodo}
-                              deleteTodo={this.deleteTodo}
-                              changeTodoState={this.changeTodoState.bind(this)}
-                    />
-                    <TodoFooter
-                        todos={this.state.todos}
-                        {...info}
-                        deleteAllTodo={this.deleteAllTodo}
-                    />
-                </div>
-            );
-        }
+        //console.log(shownTodos);
+        //展示的内容 只能返回一个父元素
+        return (
+            <div>
+                <div className="title">todos</div>
+                <TodoItem shownTodos={shownTodos}
+                          addTodo={this.addTodo}
+                          deleteTodo={this.deleteTodo}
+                          changeTodoState={this.changeTodoState.bind(this)}
+                />
+                <TodoFooter
+                    todos={this.state.todos}
+                    {...info}
+                    deleteAllTodo={this.deleteAllTodo}
+                    // getState={this.getState}
+                />
+            </div>
+        );
+    }
 
 }
 

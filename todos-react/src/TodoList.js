@@ -14,7 +14,7 @@ class TodoList extends Component {
 
     //改变任务状态
     handlerChange(index) {
-        let isCheck = !this.props.isCheck;
+        let isCheck = this.props.item.isCheck;
         this.props.changeTodoState(index, isCheck);
     }
 

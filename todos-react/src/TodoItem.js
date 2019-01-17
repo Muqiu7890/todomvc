@@ -11,6 +11,7 @@ class TodoItem extends Component {
     handlerKeyUp(e) {
         if(e.keyCode == 13) {
             let todoText = e.target.value.trim()
+            // console.log(window.location.hash.slice(2));
             if(!todoText.length) {
                 //为空
                 return
@@ -35,7 +36,7 @@ class TodoItem extends Component {
         //当你在map()方法的内部调用元素时，需要为每一项设置一个独一无二的key值
         //key会作为给React的提示，但不会传递给你的组件。如果您的组件中需要使用和key相同的值，将其作为属性传递
         //子组件是无法读出 props.key
-        const listItems = this.props.todos.map((item, index) =>
+        const listItems = this.props.shownTodos.map((item, index) =>
             <TodoList key={index} className='view'
                 item={item} index={index}
                 deleteTodo={this.props.deleteTodo}

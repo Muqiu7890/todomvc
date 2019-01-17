@@ -141,3 +141,6 @@ ul.todo-list {
 .view{
   display: block;
 }
+.btn{
+  display: inline-block;
+}
