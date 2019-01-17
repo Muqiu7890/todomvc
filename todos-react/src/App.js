@@ -17,7 +17,6 @@ class App extends Component {
         this.addTodo = this.addTodo.bind(this);
         this.deleteTodo = this.deleteTodo.bind(this);
         this.deleteAllTodo = this.deleteAllTodo.bind(this);
-        // this.getState = this.getState.bind(this);
     }
 
     //添加任务
@@ -42,9 +41,13 @@ class App extends Component {
     }
 
     //改变按钮状态
-    changeTodoState(index, state) {
+    changeTodoState(item, state) {
+        //console.log(index,state);
         const list = [...this.state.todos];
-        list[index].isCheck = !state;
+        list.forEach(i => {
+            if(i.todoItem === item)
+                i.isCheck = !state;
+        });
         this.setState({todos: list});
     }
 
@@ -72,7 +75,7 @@ class App extends Component {
             leftCount: this.state.todos.filter((item) => !item.isCheck).length,
             completedCount: shownTodos.filter((item) => item.isCheck).length
         };
-        //console.log(shownTodos);
+
         //展示的内容 只能返回一个父元素
         return (
             <div>
@@ -86,12 +89,10 @@ class App extends Component {
                     todos={this.state.todos}
                     {...info}
                     deleteAllTodo={this.deleteAllTodo}
-                    // getState={this.getState}
                 />
             </div>
         );
     }
-
 }
 
 export default App;

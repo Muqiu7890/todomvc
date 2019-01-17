@@ -13,9 +13,9 @@ class TodoList extends Component {
     }
 
     //改变任务状态
-    handlerChange(index) {
+    handlerChange(item) {
         let isCheck = this.props.item.isCheck;
-        this.props.changeTodoState(index, isCheck);
+        this.props.changeTodoState(item, isCheck);
     }
 
     handlerMouseOver() {
@@ -29,7 +29,7 @@ class TodoList extends Component {
     render() {
         return (
                 <li key={this.props.index} id={this.props.index} onMouseOver={this.handlerMouseOver.bind(this)} onMouseOut={this.handlerMouseOut.bind(this)}>
-                    <input className="toggle" type="checkbox" checked={this.props.item.isCheck} onChange={this.handlerChange.bind(this,this.props.index)}/>
+                    <input className="toggle" type="checkbox" checked={this.props.item.isCheck} onChange={this.handlerChange.bind(this,this.props.item.todoItem)}/>
                     <label className={this.props.item.isCheck ? 'task-done' : ''}>{this.props.item.todoItem}</label>
                     <button className="destroy"
                             ref={this.delButton}
