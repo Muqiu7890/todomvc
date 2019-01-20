@@ -1,0 +1,146 @@
+body {
+  border: 0;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background: #f5f5f5;
+  /*-moz-user-select:none;*/
+  /*-webkit-user-select: none;*/
+  /*-ms-user-select: none;*/
+}
+.container {
+  margin: auto 0;
+  text-align: center;
+}
+.title {
+  font-size: 100px;
+  font-weight: 100;
+  color: brown;
+  opacity: 0.3;
+  margin-top: -2px;
+  margin-bottom: 10px;
+}
+li {
+  list-style: none;
+}
+.main {
+  position: relative;
+  background: #ffffff;
+}
+input[type="text"] {
+  box-sizing: border-box;
+  font-size: 24px;
+  outline-style: none;
+}
+.new-todo {
+  width: 100%;
+  height: 65px;
+  font-size: 20px;
+  padding: 0px 15px 0px 50px;
+}
+li.completed {
+  width: 100%;
+  height: 60px;
+}
+ul.todo-list {
+  padding: 0;
+  margin: 0;
+}
+.todo-list li {
+  position: relative;
+  background-color: white;
+  border-bottom: 1px solid gray;
+}
+.toggle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 14px;
+  left: 12px;
+}
+.todo-list li label {
+  word-break: break-all;
+  padding: 18px 60px 18px 50px;
+  display: block;
+  font-size: 25px;
+  text-align: left;
+}
+.todo-list li label input {
+  width:440px;
+  height:30px;
+  font-size:25px;
+  border:0;
+  outline:none;
+}
+
+.destroy {
+  position: absolute;
+  display: none;
+  width: 25px;
+  height: 25px;
+  top: 19px;
+  left: 500px;
+}
+.todoFooter {
+  position: relative;
+  background-color: white;
+  font-size: 18px;
+  padding: 15px;
+  height: 50px;
+  box-sizing: border-box;
+  color: rgb(119, 119, 119);
+}
+.todo-count{
+  display: inline;
+  position: absolute;
+  left: 15px;
+}
+.filters {
+  display: inline;
+  text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.filters li {
+  display: inline;
+}
+
+/*.filters li:last-child {*/
+  /*!*background-color: red;*!*/
+  /*display: none;*/
+/*}*/
+
+.filters a {
+  margin: 5px;
+  padding: 5px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.filters a:hover {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+
+.task-done {
+  text-decoration:line-through;
+  color: gray;
+}
+.isClear {
+  display: block;
+}
+.clear-completed {
+  float: right;
+  position: relative;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.view{
+  display: block;
+}
+.btn{
+  display: inline-block;
+}
